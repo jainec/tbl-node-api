@@ -13,4 +13,10 @@ const User = sequelize.define(
   }
 );
 
+User.prototype.toJSON = function () {
+  const user = Object.assign({}, this.get());
+  delete user.password;
+  return user;
+};
+
 module.exports = User;

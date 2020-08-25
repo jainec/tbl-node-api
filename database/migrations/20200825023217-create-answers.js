@@ -2,60 +2,39 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return await queryInterface.createTable("questions", {
+    return await queryInterface.createTable("answers", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
       },
-      creator_id: {
+      question_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: {
-            tableName: "users",
-          },
-          key: "id",
-        },
-      },
-      question_type_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "question_types",
-          },
-          key: "id",
-        },
-      },
-      quiz_id: {
-        type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         references: {
           model: {
-            tableName: "quizzes",
+            tableName: "questions",
           },
           key: "id",
         },
       },
-      title: {
+      text: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       media: {
         type: Sequelize.STRING,
       },
-      explanation: {
-        type: Sequelize.STRING,
+      correct_answer: {
+        type: Sequelize.BOOLEAN,
       },
-      media_explanation: {
-        type: Sequelize.STRING,
-      },
-      created_at: {
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
@@ -63,6 +42,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return await queryInterface.dropTable("questions");
+    return await queryInterface.dropTable("answers");
   },
 };

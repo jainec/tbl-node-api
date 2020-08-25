@@ -12,10 +12,19 @@ class UserController {
 
   async getAll(req, res) {
     try {
-      const users = await User.findAll();
+      let order = ["name", "ASC"];
+      if (req.query.order) {
+        order[0] = req.query.order.split("-")[0];
+        order[1] = req.query.order.split("-")[1];
+      }
+      const users = await User.findAndCountAll({
+        offset: parseInt(req.query.offset),
+        limit: parseInt(req.query.limit),
+        order: [[order[0], order[1]]],
+      });
       res.send({ users, total: users.length });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500).send({ error: error.message });
     }
   }
 

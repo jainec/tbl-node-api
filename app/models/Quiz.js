@@ -13,6 +13,14 @@ const Quiz = sequelize.define(
   }
 );
 
-// Quiz.belongsTo(User);
+Quiz.belongsTo(User, {
+  foreignKey: "owner_id",
+  as: "owner",
+});
+
+User.hasMany(Quiz, {
+  foreignKey: "owner_id",
+  as: "owner",
+});
 
 module.exports = Quiz;
