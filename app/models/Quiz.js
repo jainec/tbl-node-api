@@ -16,6 +16,7 @@ const Quiz = sequelize.define(
 Quiz.belongsTo(User, {
   foreignKey: "owner_id",
   as: "owner",
+  onDelete: "CASCADE",
 });
 
 User.hasMany(Quiz, {

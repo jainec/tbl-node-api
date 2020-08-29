@@ -20,27 +20,27 @@ const Appeal = sequelize.define(
 );
 
 Appeal.belongsTo(Team, {
-  foreignKey: team_id,
+  foreignKey: "team_id",
 });
 
 Team.hasMany(Appeal, {
-  foreignKey: team_id,
+  foreignKey: "team_id",
 });
 
 Appeal.belongsTo(Question, {
-  foreignKey: question_id,
+  foreignKey: "question_id",
 });
 
 Question.hasMany(Appeal, {
-  foreignKey: question_id,
+  foreignKey: "question_id",
 });
 
 Appeal.belongsTo(Answer, {
-  foreignKey: answer_id,
+  foreignKey: "answer_id",
 });
 
 Answer.hasMany(Appeal, {
-  foreignKey: answer_id,
+  foreignKey: "answer_id",
 });
 
 module.exports = Appeal;

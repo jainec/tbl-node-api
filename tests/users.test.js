@@ -2,7 +2,14 @@ const request = require("supertest");
 const app = require("../app");
 const User = require("../app/models/User");
 
-test("should create a user", async () => {
+beforeEach(async () => {
+  await User.destroy({
+    where: {},
+    truncate: { cascade: true },
+  });
+});
+
+test("Should create a user", async () => {
   const response = await request(app).post("/users").send({
     name: "Jaine",
     email: "jayne-conceicao@hotmail.com",
