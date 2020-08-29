@@ -9,6 +9,7 @@ const AnswerController = require("../app/controllers/AnswerController");
 const LaunchController = require("../app/controllers/LaunchController");
 const TeamController = require("../app/controllers/TeamController");
 const TeamStudentController = require("../app/controllers/TeamStudentController");
+const AppealController = require("../app/controllers/AppealController");
 
 // Users routes
 router.post("/users", UserController.store);
@@ -62,6 +63,9 @@ router.post("/team_students", TeamStudentController.store);
 router.get("/team_students", TeamStudentController.getAll);
 router.get("/team_students/:id", TeamStudentController.get);
 router.delete("/team_students/:id", TeamStudentController.delete);
+
+// Appeal routes
+router.post("/appeals", AppealController.store);
 
 // Profile routes
 router.get("/profiles", ProfileController.getAll);
